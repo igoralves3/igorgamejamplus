@@ -33,7 +33,7 @@ public class Opponent : MonoBehaviour
         }
 
         framesSpawn += 1;
-        if (framesSpawn >= 600)
+        if (framesSpawn >= 60)
         {
             framesSpawn = 0;
             if (Random.Range(0,100) > 50)

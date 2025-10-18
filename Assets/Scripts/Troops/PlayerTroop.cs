@@ -55,7 +55,7 @@ public class PlayerTroop : MonoBehaviour
         else
         {
             var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
-            var currentDelta = Mathf.Infinity;
+            var currentDelta = 0f;
             var tower =  towers[0];
             if (towers.Length > 1) {
                 if (towers[0].transform.position.y > towers[1].transform.position.y)
@@ -74,11 +74,11 @@ public class PlayerTroop : MonoBehaviour
                     tower = towers[1];
                 } }
                 Debug.Log("tower " + tower.ToString());
-            /*
+           /*
             foreach (var t in towers)
             {
                 var delta = Vector3.Distance(transform.position, t.transform.position);
-                if (delta < currentDelta)
+                if (delta > currentDelta)
                 {
                     tower = t;
                     currentDelta = delta;

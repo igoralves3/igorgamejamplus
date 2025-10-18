@@ -20,6 +20,8 @@ public class EnemyTroop : MonoBehaviour
     public int cadenciaDeAtaque;
     public int alcanceDeVisao;
 
+    public GameObject espada;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -110,6 +112,25 @@ public class EnemyTroop : MonoBehaviour
                 
             }
             agent.SetDestination(tower.transform.position);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerTower"))
+        {
+            if (transform.position.x > collision.gameObject.transform.position.x)
+            {
+                //transform.LookAt(collision.gameObject.transform);
+                espada.transform.position = transform.position - new Vector3(1, 0f, 0f);
+            }
+            else
+            {
+                espada.transform.position = transform.position + new Vector3(1, 0f, 0f);
+            }
+            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+            //animator.SetBool("Atacar", true);
+
         }
     }
 }
