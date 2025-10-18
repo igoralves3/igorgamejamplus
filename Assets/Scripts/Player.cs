@@ -41,10 +41,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        frames += 1;
-        if (frames >= 600) {
-            frames = 0;
-            coins += 1;
+        if (coins < 8) {
+            frames += 1;
+            if (frames >= 600) {
+                frames = 0;
+                coins += 1;
+            }
         }
         UpdateUI();
     }
