@@ -1,3 +1,4 @@
+
 using System.Runtime.InteropServices;
 using System.Threading;
 using TMPro;
@@ -72,25 +73,42 @@ public class Player : MonoBehaviour
 
     private void OnOffense(InputAction.CallbackContext context)
     {
-        int layerIndex = LayerMask.NameToLayer("NavMesh");
-
+       
         Vector3 mousePos = Mouse.current.position.ReadValue();//Input.mousePosition;
         var worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
-        var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
 
         
-        pt.layer = layerIndex;
+        RaycastHit2D cubeHit = Physics2D.Raycast(worldPosition, Vector2.zero);
+        if (cubeHit)
+        {
+            Debug.Log("We hit " + cubeHit.collider.name);
+            if (cubeHit.collider.gameObject.tag == "SpawnArea") {
+                var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
+                pt.GetComponent<PlayerTroop>().offensive = true;
+            }
+        }
 
-        pt.GetComponent<PlayerTroop>().offensive = true;
+        
     }
 
     private void OnDefense(InputAction.CallbackContext context)
     {
         Vector3 mousePos = Mouse.current.position.ReadValue();
         var worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
-        var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
+        // var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
 
-        pt.GetComponent<PlayerTroop>().offensive = false;
+        //pt.GetComponent<PlayerTroop>().offensive = false;
+
+        RaycastHit2D cubeHit = Physics2D.Raycast(worldPosition, Vector2.zero);
+        if (cubeHit)
+        {
+            Debug.Log("We hit " + cubeHit.collider.name);
+            if (cubeHit.collider.gameObject.tag == "SpawnArea")
+            {
+                var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
+                pt.GetComponent<PlayerTroop>().offensive = false;
+            }
+        }
     }
 
     void UpdateUI()

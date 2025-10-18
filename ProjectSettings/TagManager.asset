@@ -9,6 +9,7 @@ TagManager:
   - PlayerTroop
   - EnemyTroop
   - Floor
+  - SpawnArea
   layers:
   - Default
   - TransparentFX
