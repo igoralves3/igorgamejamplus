@@ -31,8 +31,7 @@ public class PlayerTower : MonoBehaviour
         }
 
     }
-
-    private void OnCollisionEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("BoxInimigo"))
         {
@@ -42,7 +41,7 @@ public class PlayerTower : MonoBehaviour
 
                 life -= 100;
                 atacou = true;
-
+                Debug.Log(life);
                 if (life <= 0)
                 {
                     Destroy(this.gameObject);
@@ -53,4 +52,6 @@ public class PlayerTower : MonoBehaviour
             Debug.Log(life);
         }
     }
+    
 }
+    

@@ -7,6 +7,7 @@ public class EnemyTroop : MonoBehaviour
 {
 
     public bool offensive = true;
+    public Animator animator;
 
     public NavMeshAgent agent;
 
@@ -35,9 +36,10 @@ public class EnemyTroop : MonoBehaviour
     void Start()
     {
         
-
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
+        animator.SetBool("AtaqueEnemy", false);
         agent.updateUpAxis = false;
         /*
         if (offensive)
@@ -119,16 +121,17 @@ public class EnemyTroop : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerTower"))
         {
-            if (transform.position.x > collision.gameObject.transform.position.x)
+            if (transform.position.y > collision.gameObject.transform.position.y)
             {
                 //transform.LookAt(collision.gameObject.transform);
-                espada.transform.position = transform.position - new Vector3(1, 0f, 0f);
+                espada.transform.position = transform.position - new Vector3(0f, 1f, 0f);
             }
             else
             {
-                espada.transform.position = transform.position + new Vector3(1, 0f, 0f);
+                espada.transform.position = transform.position + new Vector3(0f, -1f, 0f);
             }
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+            animator.SetBool("AtaqueEnemy",true);
             //animator.SetBool("Atacar", true);
 
         }
