@@ -19,19 +19,24 @@ public class PlayerTroop : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        //foreach (var p in GameObject.FindGameObjectsWithTag("PlayerTroop"))
+        //{
+          //  if (p != this)
+            //{
+              //  Physics2D.IgnoreCollision(p.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+            //}
+        //}
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         animator.SetBool("Atacar", false);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!offensive)
+        if (offensive)
         {
-            var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
-            var currentDelta = 100f;
+            var towers = GameObject.FindGameObjectsWithTag("EnemyTower");
+            var currentDelta = Mathf.Infinity;
             var tower = towers[0];
             foreach (var t in towers)
             {
@@ -46,25 +51,45 @@ public class PlayerTroop : MonoBehaviour
         }
         else
         {
-            var towers = GameObject.FindGameObjectsWithTag("EnemyTower");
-            var currentDelta = 100f;
-            var tower = towers[0];
-            if (transform.position.y < 0)
-            {
-                tower = towers[1];
-            }
+            var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
+            var currentDelta = Mathf.Infinity;
+            var tower =  towers[0];
+            if (towers.Length > 1) {
+                if (towers[0].transform.position.y > towers[1].transform.position.y)
+                {
+                    var aux = towers[0];
+                    towers[0] = towers[1];
+                    towers[1] = aux;
+                }
 
-            //foreach (var t in towers)
-            //{
-            //    var delta = Vector3.Distance(transform.position, t.transform.position);
-            //    if (delta < currentDelta)
-            //    {
-            //        tower = t;
-            //        currentDelta = delta;
-            //    }
-            //}
+                if (transform.position.y > 0)
+                {
+                    tower = towers[0];
+                }
+                else
+                {
+                    tower = towers[1];
+                } }
+                Debug.Log("tower " + tower.ToString());
+            /*
+            foreach (var t in towers)
+            {
+                var delta = Vector3.Distance(transform.position, t.transform.position);
+                if (delta < currentDelta)
+                {
+                    tower = t;
+                    currentDelta = delta;
+                }
+            }*/
             agent.SetDestination(tower.transform.position);
         }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

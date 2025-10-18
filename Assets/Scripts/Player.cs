@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("We hit " + cubeHit.collider.name);
             if (cubeHit.collider.gameObject.tag == "SpawnArea") {
-                var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
+                var pt = Instantiate(playerTroop,cubeHit.transform.position, Quaternion.identity);
                 pt.GetComponent<PlayerTroop>().offensive = true;
             }
         }
@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
             Debug.Log("We hit " + cubeHit.collider.name);
             if (cubeHit.collider.gameObject.tag == "SpawnArea")
             {
-                var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
+                var pt = Instantiate(playerTroop, cubeHit.transform.position, Quaternion.identity);
                 pt.GetComponent<PlayerTroop>().offensive = false;
             }
         }

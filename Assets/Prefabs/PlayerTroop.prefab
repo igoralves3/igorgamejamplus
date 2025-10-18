@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5694825560798430057}
   - component: {fileID: 40669635180261791}
   - component: {fileID: 6429640004340831233}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: PlayerTroop
   m_TagString: PlayerTroop
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4803382943335510932}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 6472134063297351014}
   - component: {fileID: 176214528628614600}
   - component: {fileID: 5454863234065237336}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ColisionAtack
   m_TagString: BoxAtaque
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4803382943335510932}
   - component: {fileID: 6180445061835670687}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Square
   m_TagString: PlayerTroop
   m_Icon: {fileID: 0}
