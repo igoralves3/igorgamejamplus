@@ -8,6 +8,16 @@ public class PlayerTroop : MonoBehaviour
 
     public GameObject currentTower;
 
+    public int custoDeUso;
+    public int QuantidadeDeUnidades;
+    public int vida;
+    public int poderDeAtaque;
+    public int velocidadeDeMovimento;
+    public int cadenciaDeAtaque;
+    public int alcanceDeVisao;
+
+
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
