@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyTower : MonoBehaviour
@@ -38,8 +39,15 @@ public class EnemyTower : MonoBehaviour
         {
             if (!atacou)
             {
-                life -= 10;
+                
+
+                life -= 100;
                 atacou = true;
+
+                if (life <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
             }
 
 

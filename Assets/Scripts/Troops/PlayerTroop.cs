@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,8 @@ public class PlayerTroop : MonoBehaviour
     public NavMeshAgent agent;
     public Animator animator;
     public GameObject currentTower;
+
+    public GameObject espada;
 
     void Awake()
     {
@@ -95,9 +98,20 @@ public class PlayerTroop : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("EnemyTower"))
         {
-            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+            if (transform.position.x > collision.gameObject.transform.position.x)
+            {
+                //transform.LookAt(collision.gameObject.transform);
+                espada.transform.position =transform.position- new Vector3(1,0f,0f);
+            }
+            else
+            {
+                espada.transform.position = transform.position + new Vector3(1, 0f, 0f);
+            }
+                gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             animator.SetBool("Atacar", true);
 
         }
     }
+
+    
 }

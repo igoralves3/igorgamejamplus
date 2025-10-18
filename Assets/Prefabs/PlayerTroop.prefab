@@ -101,6 +101,7 @@ MonoBehaviour:
   agent: {fileID: 2145438952644525861}
   animator: {fileID: 0}
   currentTower: {fileID: 0}
+  espada: {fileID: 3428861821843198796}
 --- !u!195 &2145438952644525861
 NavMeshAgent:
   m_ObjectHideFlags: 0
