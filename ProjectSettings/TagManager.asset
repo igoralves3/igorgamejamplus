@@ -6,11 +6,14 @@ TagManager:
   tags:
   - PlayerTower
   - EnemyTower
+  - PlayerTroop
+  - EnemyTroop
+  - Floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NavMesh
   - Water
   - UI
   - 
