@@ -50,8 +50,8 @@ public class Player : MonoBehaviour
     {
         int layerIndex = LayerMask.NameToLayer("NavMesh");
 
-        Vector3 mousePos = Mouse.current.position.ReadValue();
-        var pt = Instantiate(playerTroop, new Vector3(mousePos.x, mousePos.y, navMesh.transform.position.z), Quaternion.identity);
+        Vector3 mousePos = Input.mousePosition;
+        var pt = Instantiate(playerTroop, new Vector3(mousePos.x, mousePos.y), Quaternion.identity);
 
         pt.layer = layerIndex;
 
