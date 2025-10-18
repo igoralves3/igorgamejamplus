@@ -51,8 +51,10 @@ public class Player : MonoBehaviour
         int layerIndex = LayerMask.NameToLayer("NavMesh");
 
         Vector3 mousePos = Input.mousePosition;
-        var pt = Instantiate(playerTroop, new Vector3(mousePos.x, mousePos.y), Quaternion.identity);
+        var worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
 
+        
         pt.layer = layerIndex;
 
         pt.GetComponent<PlayerTroop>().offensive = true;
