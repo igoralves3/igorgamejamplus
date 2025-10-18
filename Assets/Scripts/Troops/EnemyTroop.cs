@@ -71,7 +71,7 @@ public class EnemyTroop : MonoBehaviour
         if (offensive)
         {
             var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
-            var currentDelta = 100f;
+            var currentDelta = Mathf.Infinity;
             var tower = towers[0];
             foreach (var t in towers)
             {
@@ -87,16 +87,20 @@ public class EnemyTroop : MonoBehaviour
         else
         {
             var towers = GameObject.FindGameObjectsWithTag("EnemyTower");
-            var currentDelta = 100f;
+            var currentDelta = Mathf.Infinity;
             var tower = towers[0];
             foreach (var t in towers)
             {
-                var delta = Vector3.Distance(transform.position, t.transform.position);
-                if (delta < currentDelta)
-                {
-                    tower = t;
-                    currentDelta = delta;
-                }
+                 if (t != currentTower)
+                    {
+                        var delta = Vector3.Distance(transform.position, t.transform.position);
+                        if (delta < currentDelta)
+                        {
+                            tower = t;
+                            currentDelta = delta;
+                        }
+                    }
+                
             }
             agent.SetDestination(tower.transform.position);
         }

@@ -1,4 +1,5 @@
 
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using TMPro;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
 
     public Canvas canvas;
     public Text text;
+    public Text enemyText;
 
     public Camera camera;
 
@@ -113,7 +115,8 @@ public class Player : MonoBehaviour
 
     void UpdateUI()
     {
-        text.text = ("Coins : " + coins.ToString());
+        text.text = ("Player Coins : " + coins.ToString());
+        enemyText.text = ("Enemy Coins : " + Opponent.coins.ToString());
     }
 
 }

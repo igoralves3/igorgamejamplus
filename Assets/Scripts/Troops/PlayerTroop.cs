@@ -28,7 +28,7 @@ public class PlayerTroop : MonoBehaviour
     {
         if (!offensive)
         {
-            var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
+            var towers = GameObject.FindGameObjectsWithTag("EnemyTower");
             var currentDelta = 100f;
             var tower = towers[0];
             foreach (var t in towers)
@@ -44,9 +44,15 @@ public class PlayerTroop : MonoBehaviour
         }
         else
         {
-            var towers = GameObject.FindGameObjectsWithTag("EnemyTower");
+            var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
             var currentDelta = 100f;
             var tower = towers[0];
+            if (transform.position.y < 0)
+            {
+                tower = towers[1];
+            }
+
+            /*
             foreach (var t in towers)
             {
                 var delta = Vector3.Distance(transform.position, t.transform.position);
@@ -55,7 +61,7 @@ public class PlayerTroop : MonoBehaviour
                     tower = t;
                     currentDelta = delta;
                 }
-            }
+            }*/
             agent.SetDestination(tower.transform.position);
         }
     }

@@ -1,6 +1,5 @@
 
 using System.Collections.Specialized;
-using System.Diagnostics;
 using UnityEngine;
 
 public class Opponent : MonoBehaviour
@@ -70,6 +69,34 @@ public class Opponent : MonoBehaviour
         var worldPosition = new Vector3(sp.transform.position.x, sp.transform.position.y, -2);
 
         var it = Instantiate(enemyTroop, worldPosition, Quaternion.identity);
-        it.GetComponent<EnemyTroop>().offensive = false;
+        var towers = GameObject.FindGameObjectsWithTag("EnemyTower");
+        var currentDelta = Mathf.Infinity;
+
+        var itc = it.GetComponent<EnemyTroop>();
+        var tower = towers[0];
+        if (worldPosition.x > 0)
+        {
+            tower = towers[1];
+        }
+        /*
+        foreach (var t in towers)
+        {
+           
+
+                var delta = Vector3.Distance(transform.position, t.transform.position);
+                if (delta < currentDelta)
+                {
+                    tower = t;
+                    currentDelta = delta;
+                }
+            
+        
+        }*/
+
+        //var itc = it.GetComponent<EnemyTroop>();
+        itc.offensive = false;
+        itc.currentTower = tower;
+
+        Debug.Log(itc.currentTower);
     }
 }
