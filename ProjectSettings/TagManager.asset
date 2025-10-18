@@ -11,6 +11,7 @@ TagManager:
   - Floor
   - SpawnArea
   - EnemySpawn
+  - BoxAtaque
   layers:
   - Default
   - TransparentFX
