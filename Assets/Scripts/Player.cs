@@ -1,6 +1,12 @@
+using System.Runtime.InteropServices;
+using System.Threading;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+//using static System.Net.Mime.MediaTypeNames;
+
 public class Player : MonoBehaviour
 {
 
@@ -10,9 +16,20 @@ public class Player : MonoBehaviour
 
     public GameObject navMesh;
 
+    public Canvas canvas;
+    public Text text;
+
+    public Camera camera;
+
+    public static int coins = 0;
+
+    public int frames = 0;
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
+
+        camera = Camera.main;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,7 +41,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        frames += 1;
+        if (frames >= 600) {
+            frames = 0;
+            coins += 1;
+        }
+        UpdateUI();
     }
 
     void SetTargetPosition()
@@ -50,7 +72,7 @@ public class Player : MonoBehaviour
     {
         int layerIndex = LayerMask.NameToLayer("NavMesh");
 
-        Vector3 mousePos = Input.mousePosition;
+        Vector3 mousePos = Mouse.current.position.ReadValue();//Input.mousePosition;
         var worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
         var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
 
@@ -63,8 +85,17 @@ public class Player : MonoBehaviour
     private void OnDefense(InputAction.CallbackContext context)
     {
         Vector3 mousePos = Mouse.current.position.ReadValue();
-        var pt = Instantiate(playerTroop, new Vector3(mousePos.x, mousePos.y, navMesh.transform.position.z), Quaternion.identity);
+        var worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        var pt = Instantiate(playerTroop, worldPosition, Quaternion.identity);
 
         pt.GetComponent<PlayerTroop>().offensive = false;
     }
+
+    void UpdateUI()
+    {
+        text.text = ("Coins : " + coins.ToString());
+    }
+
 }
+
+
