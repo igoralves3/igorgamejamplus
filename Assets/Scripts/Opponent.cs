@@ -41,15 +41,15 @@ public class Opponent : MonoBehaviour
             var r = Random.Range(0, 100);
             if (r <= 30)
             {
-                if (coins >= 2) {
-                    coins -= 2;
+                if (coins >= 1) {
+                    coins -= 1;
                     OnOffense();
                 }
             }
             else if (r > 30 && r <= 60)
             {
-                if (coins >= 1) {
-                    coins -= 1;
+                if (coins >= 5) {
+                    coins -= 5;
                     //OnOffense();
                     OnDefense();
                 }

@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class EnemyTroop : MonoBehaviour
 {
+    public AudioSource audioData;
+    public AudioClip clip;
 
     public bool offensive = true;
     public Animator animator;

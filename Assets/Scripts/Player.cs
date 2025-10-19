@@ -83,8 +83,8 @@ public class Player : MonoBehaviour
         RaycastHit2D cubeHit = Physics2D.Raycast(worldPosition, Vector2.zero);
         if (cubeHit)
         {
-            if (coins >= 2) {
-                coins -= 2;
+            if (coins >= 1) {
+                coins -= 1;
                 Debug.Log("We hit " + cubeHit.collider.name);
                 if (cubeHit.collider.gameObject.tag == "SpawnArea") {
                     var pt = Instantiate(playerTroop, cubeHit.transform.position, Quaternion.identity);
@@ -107,9 +107,9 @@ public class Player : MonoBehaviour
         RaycastHit2D cubeHit = Physics2D.Raycast(worldPosition, Vector2.zero);
         if (cubeHit)
         {
-            if (coins >= 1)
+            if (coins >=5)
             {
-                coins -= 1;
+                coins -= 5;
                 Debug.Log("We hit " + cubeHit.collider.name);
                 if (cubeHit.collider.gameObject.tag == "SpawnArea")
                 {

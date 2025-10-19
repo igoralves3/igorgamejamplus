@@ -49,7 +49,7 @@ public class PlayerTower : MonoBehaviour
             {
 
 
-                life -= 100;
+                life -= 10;
                 atacou = true;
 
                 if (life <= 0)

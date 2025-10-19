@@ -1,13 +1,16 @@
 
 
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class PlayerTroop : MonoBehaviour
 {
+
+    public AudioSource audioData;
+    public AudioClip clip;
+
     public bool offensive = true;
     public NavMeshAgent agent;
     public Animator animator;
@@ -142,8 +145,9 @@ public class PlayerTroop : MonoBehaviour
             }
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             animator.SetBool("Atacar", true);
+            AudioSource.PlayClipAtPoint(clip, transform.position);
 
-            
+
         }
         if (collision.gameObject.CompareTag("PlayerTower"))
         {
