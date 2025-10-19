@@ -6,6 +6,7 @@ public class PlayerTower : MonoBehaviour
     public float side = 0f;
     float ataqueCowldown = 3;
     bool atacou;
+    public BoxCollider2D box;
     public EnemyTroop enemyTroop;
     float count;
     public int lifeMax = 100;
@@ -17,6 +18,7 @@ public class PlayerTower : MonoBehaviour
     void Start()
     {
         life = lifeMax;
+        box = GetComponent<BoxCollider2D>();
         count = 0;
     }
 
@@ -51,7 +53,7 @@ public class PlayerTower : MonoBehaviour
                     //child.GetComponent<BoxCollider2D>().enabled = false;
                     //enabled = false;
                     enemyTroop.atacarAnim = true;
-                    Destroy(this.gameObject);
+                    box.enabled = false;
                 }
             }
 

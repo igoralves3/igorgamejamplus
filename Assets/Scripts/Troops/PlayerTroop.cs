@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,14 +9,15 @@ public class PlayerTroop : MonoBehaviour
     public NavMeshAgent agent;
     public Animator animator;
     public GameObject currentTower;
-    
+    public Transform torre;
+    float rotacaoOffset = 0f;
 
     public GameObject espada;
 
     public int hp = 100;
     public bool goingToCenter = false;
-
-    public int attack=10;
+    
+    public int attack = 10;
 
     void Awake()
     {
@@ -31,10 +33,10 @@ public class PlayerTroop : MonoBehaviour
 
         //foreach (var p in GameObject.FindGameObjectsWithTag("PlayerTroop"))
         //{
-          //  if (p != this)
-            //{
-              //  Physics2D.IgnoreCollision(p.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
-            //}
+        //  if (p != this)
+        //{
+        //  Physics2D.IgnoreCollision(p.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+        //}
         //}
 
         agent = GetComponent<NavMeshAgent>();
@@ -54,9 +56,11 @@ public class PlayerTroop : MonoBehaviour
                 {
                     tower = t;
                     currentDelta = delta;
+
                 }
             }
             agent.SetDestination(tower.transform.position);
+            torre = tower.transform;
         }
         else
         {
@@ -75,8 +79,8 @@ public class PlayerTroop : MonoBehaviour
 
         if (currentTower == null)
         {
-            animator.SetBool("Atacar", false);
-         //   ChangeTower();
+           
+            //   ChangeTower();
         }
 
         if (goingToCenter)
@@ -90,18 +94,34 @@ public class PlayerTroop : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
+
         if (collision.gameObject.CompareTag("EnemyTower"))
         {
             if (transform.position.x > collision.gameObject.transform.position.x)
             {
-                //transform.LookAt(collision.gameObject.transform);
-                espada.transform.position =transform.position- new Vector3(1,0f,0f);
+                Vector3 direcao = torre.position-espada.transform.position;
+
+                float angulo= Mathf.Atan2(direcao.y, direcao.x)*Mathf.Rad2Deg;
+
+                Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, -angulo + rotacaoOffset);
+                espada.transform.rotation = rotacaoFinal;
+
+                 espada.transform.position = transform.position - new Vector3(1, 0f, 0f);
+
             }
             else
             {
+                Vector3 direcao = torre.position - espada.transform.position;
+
+                float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
+
+                Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, angulo + rotacaoOffset);
+                espada.transform.rotation = rotacaoFinal;
                 espada.transform.position = transform.position + new Vector3(1, 0f, 0f);
+
             }
-                gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             animator.SetBool("Atacar", true);
 
         }
@@ -146,7 +166,7 @@ public class PlayerTroop : MonoBehaviour
                 tower = towers[1];
             }
         }
-        
+
         Debug.Log("tower " + tower.ToString());
         /*
          foreach (var t in towers)
@@ -179,18 +199,35 @@ public class PlayerTroop : MonoBehaviour
 
     void GoToCenter()
     {
-        agent.SetDestination(new Vector3(0f,0f,0f));
+        agent.SetDestination(new Vector3(0f, 0f, 0f));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "EnemyTroop")
         {
-            
-                var c = collision.gameObject.GetComponent<EnemyTroop>();
-                c.hp -= Random.Range(0,attack); 
-            
+
+            //var c = collision.gameObject.GetComponent<EnemyTroop>();
+            //c.hp -= Random.Range(0,attack); 
+
         }
     }
+    public void lidarComTrigger(VisionTroopScript.TipoDeTrigger tipoDeTrigger, Collider2D playerCollider, GameObject target)
+    {
+        switch (tipoDeTrigger)
+        {
 
+            case VisionTroopScript.TipoDeTrigger.Visao:
+                animator.SetBool("Atacar", true);
+                agent.Stop();
+                gameObject.transform.LookAt(target.transform);
+                
+                break;
+        }
+    }
+    public   void EnemyisDead(bool dead)
+    {
+        
+    }
+    
 }

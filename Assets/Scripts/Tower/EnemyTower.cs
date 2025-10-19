@@ -6,10 +6,12 @@ public class EnemyTower : MonoBehaviour
 {
     public PaiTorres paiTorres;
     public float side = 0f;
+
     public bool morri = false;
     float ataqueCowldown = 3;
     bool atacou;
     float count;
+    BoxCollider2D box;
     public int lifeMax = 100;
     public int life;
 
@@ -21,6 +23,7 @@ public class EnemyTower : MonoBehaviour
         
         life = lifeMax;
         count = 0;
+        box = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -73,10 +76,12 @@ public class EnemyTower : MonoBehaviour
 
                 life -= 100;
                 atacou = true;
-
+                collision.gameObject.GetComponent<PlayerTroop>().animator.SetBool("Atacar", atacou);
+                collision.gameObject.transform.LookAt(gameObject.transform.position);
                 if (life <= 0)
                 {
                     morri = true;
+                    
                     paiTorres.checagemtorre(morri);
                     //collision.enabled = false;
 
@@ -97,21 +102,23 @@ public class EnemyTower : MonoBehaviour
             {
                 
 
-                life -= 100;
+                life -= 10;
                 atacou = true;
 
                 if (life <= 0)
                 {
                     morri = true;
-                    paiTorres.checagemtorre(morri);
-                  collision.enabled = false;
+                   
+                     box.enabled = false;
                     
-                    Destroy(this.gameObject,1);
+                   
                 }
             }
 
 
-            Debug.Log(life);
+           
         }
     }
+
+    
 }

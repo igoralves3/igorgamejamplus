@@ -21,6 +21,7 @@ public class EnemyTroop : MonoBehaviour
     public int velocidadeDeMovimento;
     public int cadenciaDeAtaque;
     public int alcanceDeVisao;
+    public bool isDead;
 
     public GameObject espada;
 
@@ -130,6 +131,8 @@ public class EnemyTroop : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
+       
         if (collision.gameObject.CompareTag("PlayerTower"))
         {
             if (transform.position.y > collision.gameObject.transform.position.y)
@@ -171,7 +174,7 @@ public class EnemyTroop : MonoBehaviour
 
         }
     }
-
+ 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerTower"))
@@ -358,8 +361,22 @@ public class EnemyTroop : MonoBehaviour
     void GoToCenter()
     {
        goingToCenter = true;
-        agent.SetDestination(new Vector3(0f, 0f, 0f));
+       agent.SetDestination(new Vector3(0f, 0f, 0f));
     }
 
+    public void lidarComTrigger(scriptVisaoEnemy.TipoDeTrigger tipoDeTrigger,Collider2D playerCollider,GameObject target)
+    {
+            switch(tipoDeTrigger)
+            {
+            case scriptVisaoEnemy.TipoDeTrigger.Visao:
+                animator.SetBool("AtaqueEnemy", true);
+                agent.Stop();
+                gameObject.transform.LookAt(target.transform);
+               
+              
+                break;
+
+        }
+    }
    
 }
