@@ -30,7 +30,7 @@ public class Opponent : MonoBehaviour
             if (framesCoins >= 600)
             {
                 framesCoins = 0;
-                coins += 1;
+                coins += 2;
             }
         }
 

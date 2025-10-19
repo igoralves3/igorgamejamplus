@@ -134,12 +134,12 @@ public class PlayerTroop : MonoBehaviour
             }
             else
             {
-                //Vector3 direcao = torre.position - espada.transform.position;
+                Vector3 direcao = torre.position - espada.transform.position;
 
- //               float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
+                  float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
 
-   //             Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, angulo + rotacaoOffset);
-     //           espada.transform.rotation = rotacaoFinal;
+              Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, angulo + rotacaoOffset);
+                  espada.transform.rotation = rotacaoFinal;
                 espada.transform.position = transform.position + new Vector3(1, 0f, 0f);
 
             }

@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
             frames += 1;
             if (frames >= 600) {
                 frames = 0;
-                coins += 1;
+                coins += 2;
             }
         }
         UpdateUI();

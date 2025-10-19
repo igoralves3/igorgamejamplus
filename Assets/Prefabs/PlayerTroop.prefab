@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4803382943335510932}
@@ -86,7 +86,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &6517579267071181786
 MonoBehaviour:
@@ -120,7 +120,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1050989628146463736}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.125
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -282,7 +282,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0029599667, y: 0, z: 0}
-  m_LocalScale: {x: 13.498987, y: 5.67327, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5736679449497780809}
@@ -476,8 +476,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 16, y: 16, z: 4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5736679449497780809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -607,7 +607,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.98112893
+  m_Radius: 0.04725415
 --- !u!114 &2027241692787123063
 MonoBehaviour:
   m_ObjectHideFlags: 0
