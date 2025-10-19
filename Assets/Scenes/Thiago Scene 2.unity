@@ -849,13 +849,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211975609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.78034, y: -4.44025, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2142873857}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1892077284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &211975612
 BoxCollider2D:
@@ -931,9 +931,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feda91551b9a6fb458ff7a8e4519afb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTower
+  paiTorres: {fileID: 0}
   side: 0
+  morri: 0
   lifeMax: 100
   life: 0
+  child: {fileID: 0}
 --- !u!1 &284087600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,13 +1462,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571692775}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.21966, y: -4.44025, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 193600692}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1892077284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &571692778
 BoxCollider2D:
@@ -1541,9 +1544,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feda91551b9a6fb458ff7a8e4519afb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTower
+  paiTorres: {fileID: 0}
   side: 0
+  morri: 0
   lifeMax: 100
   life: 0
+  child: {fileID: 0}
 --- !u!50 &571692781
 Rigidbody2D:
   serializedVersion: 5
@@ -3480,7 +3486,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.4409833, y: 0.035268784}
+  m_Offset: {x: -0.52418774, y: -0.14896977}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3490,7 +3496,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.079825, y: 1.2683959}
+  m_Size: {x: 0.891189, y: 1.636873}
   m_EdgeRadius: 0
 --- !u!1 &1404477929
 GameObject:
@@ -3668,13 +3674,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423898742}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.54, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.78034, y: 2.09975, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1344391472}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1892077284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1423898745
 BoxCollider2D:
@@ -3710,7 +3716,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.6394799}
+  m_Offset: {x: 0, y: -0.7749326}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3720,7 +3726,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.2789598}
+  m_Size: {x: 1, y: 2.5498652}
   m_EdgeRadius: 0
 --- !u!114 &1423898746
 MonoBehaviour:
@@ -3751,8 +3757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTower
   side: 0
+  enemyTroop: {fileID: 0}
   lifeMax: 100
   life: 0
+  child: {fileID: 1344391471}
 --- !u!1 &1429499739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3839,13 +3847,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429499739}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.419, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.78034, y: -10.85925, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 193890875}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1892077284}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1429499742
 BoxCollider2D:
@@ -3881,7 +3889,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.7500074}
+  m_Offset: {x: 0, y: 0.7103355}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3891,7 +3899,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.5000148}
+  m_Size: {x: 1, y: 2.420671}
   m_EdgeRadius: 0
 --- !u!114 &1429499743
 MonoBehaviour:
@@ -3922,8 +3930,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTower
   side: 0
+  enemyTroop: {fileID: 0}
   lifeMax: 100
   life: 0
+  child: {fileID: 193890874}
 --- !u!1 &1435305482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4005,8 +4015,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTower
   side: 0
+  enemyTroop: {fileID: 0}
   lifeMax: 100
   life: 0
+  child: {fileID: 0}
 --- !u!4 &1568130653
 Transform:
   m_ObjectHideFlags: 0
@@ -4621,6 +4633,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1892077282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892077284}
+  - component: {fileID: 1892077283}
+  m_Layer: 0
+  m_Name: PaiTorres
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1892077283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892077282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d826f3f02fb181c47a3f45d071072c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  torreA1: 0
+  torreA2: 0
+  torreE1: 0
+  torreE2: 0
+  Towers:
+  - {fileID: 1429499739}
+  - {fileID: 1423898742}
+  - {fileID: 211975609}
+  - {fileID: 571692775}
+--- !u!4 &1892077284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892077282}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.78034, y: 4.44025, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1429499741}
+  - {fileID: 1423898744}
+  - {fileID: 211975611}
+  - {fileID: 571692777}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1910277123
 GameObject:
   m_ObjectHideFlags: 0
@@ -5007,11 +5076,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1429499741}
   - {fileID: 1568130653}
-  - {fileID: 1423898744}
-  - {fileID: 211975611}
-  - {fileID: 571692777}
   - {fileID: 25764405}
   - {fileID: 1833122276}
   - {fileID: 950071211}
@@ -5031,3 +5096,4 @@ SceneRoots:
   - {fileID: 1631278465}
   - {fileID: 1798539917}
   - {fileID: 1257793963}
+  - {fileID: 1892077284}

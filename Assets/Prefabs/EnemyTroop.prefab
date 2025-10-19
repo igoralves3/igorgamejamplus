@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4916485849304957694}
   - component: {fileID: 753505611308101270}
   - component: {fileID: 3006096532664234625}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyTroop
   m_TagString: EnemyTroop
   m_Icon: {fileID: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTroop
   offensive: 1
   animator: {fileID: 0}
+  atacarAnim: 0
   agent: {fileID: 0}
   currentTower: {fileID: 0}
   custoDeUso: 0
@@ -62,6 +63,8 @@ MonoBehaviour:
   cadenciaDeAtaque: 0
   alcanceDeVisao: 0
   espada: {fileID: 8203007343228718619}
+  hp: 100
+  goingToCenter: 0
 --- !u!61 &8668756345894016948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5214474464420637699}
   - component: {fileID: 9076422933377865290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +315,7 @@ GameObject:
   - component: {fileID: 7282044529303100454}
   - component: {fileID: 3300684615587942164}
   - component: {fileID: 4250160428545656298}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ColisionAttack
   m_TagString: BoxInimigo
   m_Icon: {fileID: 0}
