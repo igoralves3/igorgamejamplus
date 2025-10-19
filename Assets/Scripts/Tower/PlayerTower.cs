@@ -25,6 +25,11 @@ public class PlayerTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (life <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         if (atacou == true)
         {
             count += Time.deltaTime;
@@ -38,7 +43,7 @@ public class PlayerTower : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("BoxInimigo"))
+        if (collision.gameObject.CompareTag("BoxInimigo") || collision.gameObject.CompareTag("EnemyTroop"))
         {
             if (!atacou)
             {
@@ -51,21 +56,21 @@ public class PlayerTower : MonoBehaviour
                 {
                     Debug.Log("vida");
                     //child.GetComponent<BoxCollider2D>().enabled = false;
-                    enabled = false;
+                    //enabled = false;
                     enemyTroop.atacarAnim = true;
                     box.enabled = false;
                 }
             }
 
 
-            Debug.Log(life);
+            Debug.Log("trigger "+life.ToString());
         }
         
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("EnemyTroop"))
+        if (collision.gameObject.CompareTag("BoxInimigo") || collision.gameObject.CompareTag("EnemyTroop"))
         {
             if (!atacou)
             {
@@ -89,7 +94,7 @@ public class PlayerTower : MonoBehaviour
             }
 
 
-            Debug.Log(life);
+            Debug.Log("col "+life.ToString());
         }
     }
 
@@ -97,8 +102,8 @@ public class PlayerTower : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyTroop")
         {
-            //if (!atacou)
-            //{
+            if (!atacou)
+            {
 
 
             life -= 1;
@@ -112,10 +117,10 @@ public class PlayerTower : MonoBehaviour
 
                 Destroy(this.gameObject);
             }
-            //}
+            }
 
 
-            Debug.Log(life);
+            Debug.Log("col stay "+life.ToString());
         }
     }
 
@@ -123,7 +128,7 @@ public class PlayerTower : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyTroop")
         {
-            atacou = false;
+            //atacou = false;
         }
     }
 

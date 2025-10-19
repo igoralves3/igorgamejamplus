@@ -1,5 +1,6 @@
 
 using System.Collections.Specialized;
+
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
@@ -61,8 +62,9 @@ public class EnemyTroop : MonoBehaviour
             {
                 SceneManager.LoadScene("GameOver");
             }
+            var tower = towers[Random.Range(0, towers.Length)];//towerss[0];
 
-            var tower = towers[0];
+            //var tower = towers[0];
             foreach (var t in towers)
             {
                 var delta = Vector3.Distance(transform.position, t.transform.position);
@@ -149,6 +151,7 @@ public class EnemyTroop : MonoBehaviour
        
         if (collision.gameObject.CompareTag("PlayerTower"))
         {
+            Debug.Log("Player Tower trigger");
             if (transform.position.y > collision.gameObject.transform.position.y)
             {
                 //transform.LookAt(collision.gameObject.transform);
@@ -161,13 +164,17 @@ public class EnemyTroop : MonoBehaviour
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             animator.SetBool("AtaqueEnemy",atacarAnim);
             //animator.SetBool("Atacar", true);
-            //if (collision.gameObject.GetComponent<PlayerTower>() == null)
-            //{
-              //  currentTower = null;
+            var c = collision.gameObject.GetComponent<PlayerTower>();
+            if (c != null)
+            {
+                c.life -= 1;
+
+
+                //currentTower = null;
                 
-               // goingToCenter = true;
+                //goingToCenter = true;
                 //GoToCenter();
-            //}
+            }
 
         }
         if (collision.gameObject.CompareTag("EnemyTower"))
@@ -188,11 +195,47 @@ public class EnemyTroop : MonoBehaviour
 
         }
     }
- 
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+
+        if (collision.gameObject.CompareTag("PlayerTower"))
+        {
+            Debug.Log("Player Tower trigger");
+            if (transform.position.y > collision.gameObject.transform.position.y)
+            {
+                //transform.LookAt(collision.gameObject.transform);
+                espada.transform.position = transform.position - new Vector3(0f, 1f, 0f);
+            }
+            else
+            {
+                espada.transform.position = transform.position + new Vector3(0f, -1f, 0f);
+            }
+            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+            animator.SetBool("AtaqueEnemy", atacarAnim);
+            //animator.SetBool("Atacar", true);
+            var c = collision.gameObject.GetComponent<PlayerTower>();
+            if (c != null)
+            {
+                c.life -= 10;
+
+
+                //currentTower = null;
+
+                //goingToCenter = true;
+                //GoToCenter();
+            }
+
+        }
+        
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerTower"))
         {
+            Debug.Log("Player Tower collision");
             if (transform.position.y > collision.gameObject.transform.position.y)
             {
                 //transform.LookAt(collision.gameObject.transform);
@@ -319,45 +362,48 @@ public class EnemyTroop : MonoBehaviour
     {
         var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
         var currentDelta = 0f;
-        
+
         if (towers.Length == 0)
         {
             SceneManager.LoadScene("GameOver");
         }
-        var tower = towers[0];
-        if (towers.Length > 1)
+        else
         {
-            if (towers[0].transform.position.x > towers[1].transform.position.x)
+            var tower = towers[0];
+            if (towers.Length > 1)
             {
-                var aux = towers[0];
-                towers[0] = towers[1];
-                towers[1] = aux;
+                if (towers[0].transform.position.x > towers[1].transform.position.x)
+                {
+                    var aux = towers[0];
+                    towers[0] = towers[1];
+                    towers[1] = aux;
+                }
+
+                if (transform.position.x > 0)
+                {
+                    tower = towers[0];
+                }
+                else
+                {
+                    tower = towers[1];
+                }
             }
 
-            if (transform.position.x > 0)
-            {
-                tower = towers[0];
-            }
-            else
-            {
-                tower = towers[1];
-            }
-        }
-
-        Debug.Log("tower " + tower.ToString());
-        /*
-         foreach (var t in towers)
-         {
-             var delta = Vector3.Distance(transform.position, t.transform.position);
-             if (delta > currentDelta)
+            Debug.Log("tower " + tower.ToString());
+            /*
+             foreach (var t in towers)
              {
-                 tower = t;
-                 currentDelta = delta;
-             }
-         }*/
-        agent.SetDestination(tower.transform.position);
+                 var delta = Vector3.Distance(transform.position, t.transform.position);
+                 if (delta > currentDelta)
+                 {
+                     tower = t;
+                     currentDelta = delta;
+                 }
+             }*/
+            agent.SetDestination(tower.transform.position);
 
-        currentTower = tower;
+            currentTower = tower;
+        }
     }
 
     void ChangeTower()

@@ -935,7 +935,7 @@ MonoBehaviour:
   side: 0
   morri: 0
   lifeMax: 100
-  life: 0
+  life: 100
   child: {fileID: 0}
 --- !u!1 &284087600
 GameObject:
@@ -1548,7 +1548,7 @@ MonoBehaviour:
   side: 0
   morri: 0
   lifeMax: 100
-  life: 0
+  life: 100
   child: {fileID: 0}
 --- !u!50 &571692781
 Rigidbody2D:
@@ -3716,7 +3716,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.5642588}
+  m_Offset: {x: 0, y: -0.20656157}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3726,7 +3726,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.1285167}
+  m_Size: {x: 1, y: 1.4131222}
   m_EdgeRadius: 0
 --- !u!114 &1423898746
 MonoBehaviour:
@@ -3760,7 +3760,7 @@ MonoBehaviour:
   box: {fileID: 0}
   enemyTroop: {fileID: 0}
   lifeMax: 100
-  life: 0
+  life: 100
   child: {fileID: 1344391471}
 --- !u!1 &1429499739
 GameObject:
@@ -3890,7 +3890,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.538226}
+  m_Offset: {x: 0, y: 0.2176907}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3900,7 +3900,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.076452}
+  m_Size: {x: 1, y: 1.4353814}
   m_EdgeRadius: 0
 --- !u!114 &1429499743
 MonoBehaviour:
@@ -3934,7 +3934,7 @@ MonoBehaviour:
   box: {fileID: 0}
   enemyTroop: {fileID: 0}
   lifeMax: 100
-  life: 0
+  life: 100
   child: {fileID: 193890874}
 --- !u!1 &1435305482
 GameObject:
