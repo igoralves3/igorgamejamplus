@@ -1,4 +1,5 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
@@ -118,7 +119,7 @@ public class PlayerTroop : MonoBehaviour
 
                 Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, angulo + rotacaoOffset);
                 espada.transform.rotation = rotacaoFinal;
-                espada.transform.position = transform.position + new Vector3(1, 0f, 0f);
+                espada.transform.position = transform.position + new Vector3(-1, 0f, 0f);
 
             }
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
@@ -139,6 +140,15 @@ public class PlayerTroop : MonoBehaviour
                     GoToCenter();
                 }
             }
+
+        }
+        if(collision.gameObject.CompareTag("BoxInimigo")
+
+         {
+            hp -= 10;
+
+            if (hp <= 0) {
+                Destroy(this.gameObject);
 
         }
     }
@@ -220,8 +230,13 @@ public class PlayerTroop : MonoBehaviour
             case VisionTroopScript.TipoDeTrigger.Visao:
                 animator.SetBool("Atacar", true);
                 agent.Stop();
-                gameObject.transform.LookAt(target.transform);
-                
+                Vector3 direcao = target.transform.position - espada.transform.position;
+
+                float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
+
+                Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, -angulo + rotacaoOffset);
+                espada.transform.rotation = rotacaoFinal;
+
                 break;
         }
     }

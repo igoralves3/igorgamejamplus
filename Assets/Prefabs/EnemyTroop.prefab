@@ -56,6 +56,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   atacarAnim: 0
   agent: {fileID: 0}
+  rotacaoOffset: 0
   currentTower: {fileID: 0}
   custoDeUso: 0
   QuantidadeDeUnidades: 0
@@ -445,7 +446,7 @@ Transform:
   m_GameObject: {fileID: 8203007343228718619}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7091967, w: 0.7050108}
-  m_LocalPosition: {x: -0.01, y: -1.28, z: 0}
+  m_LocalPosition: {x: -0, y: 0.48, z: 0}
   m_LocalScale: {x: 14.7933, y: 2.8125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -512,7 +513,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0038601756, y: -0.015440911}
+  m_Offset: {x: -0.01701178, y: -0.015440911}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -522,7 +523,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.23567402, y: 0.27427644}
+  m_Size: {x: 0.19391161, y: 0.27427644}
   m_EdgeRadius: 0
 --- !u!212 &4250160428545656298
 SpriteRenderer:

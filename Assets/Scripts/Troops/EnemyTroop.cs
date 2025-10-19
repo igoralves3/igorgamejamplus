@@ -1,6 +1,7 @@
 
 using System.Collections.Specialized;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +12,7 @@ public class EnemyTroop : MonoBehaviour
     public Animator animator;
     public bool atacarAnim;
     public NavMeshAgent agent;
-
+    public float rotacaoOffset = 0f;
     public GameObject currentTower;
 
     public int custoDeUso;
@@ -371,7 +372,16 @@ public class EnemyTroop : MonoBehaviour
             case scriptVisaoEnemy.TipoDeTrigger.Visao:
                 animator.SetBool("AtaqueEnemy", true);
                 agent.Stop();
-                gameObject.transform.LookAt(target.transform);
+
+                Vector3 direcao = target.transform.position - espada.transform.position;
+
+                float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
+
+                Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, -angulo + rotacaoOffset);
+                espada.transform.rotation = rotacaoFinal;
+
+
+               
                
               
                 break;
