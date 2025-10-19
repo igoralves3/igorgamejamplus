@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyTroop : MonoBehaviour
 {
@@ -55,6 +56,12 @@ public class EnemyTroop : MonoBehaviour
         {
             var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
             var currentDelta = Mathf.Infinity;
+
+            if (towers.Length == 0)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+
             var tower = towers[0];
             foreach (var t in towers)
             {
@@ -72,6 +79,12 @@ public class EnemyTroop : MonoBehaviour
         {
             var towers = GameObject.FindGameObjectsWithTag("EnemyTower");
             var currentDelta = Mathf.Infinity;
+
+            if (towers.Length == 0)
+            {
+                SceneManager.LoadScene("Victory");
+            }
+
             var tower = towers[0];
             foreach (var t in towers)
             {
@@ -259,7 +272,14 @@ public class EnemyTroop : MonoBehaviour
     {
         var towers = GameObject.FindGameObjectsWithTag("EnemyTower");
         var currentDelta = 0f;
+        if (towers.Length == 0)
+        {
+            SceneManager.LoadScene("Victory");
+        }
+
         var tower = towers[0];
+
+
         if (towers.Length > 1)
         {
             if (towers[0].transform.position.x > towers[1].transform.position.x)
@@ -299,6 +319,11 @@ public class EnemyTroop : MonoBehaviour
     {
         var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
         var currentDelta = 0f;
+        
+        if (towers.Length == 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
         var tower = towers[0];
         if (towers.Length > 1)
         {

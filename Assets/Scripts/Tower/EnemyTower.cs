@@ -13,7 +13,7 @@ public class EnemyTower : MonoBehaviour
     float count;
     BoxCollider2D box;
     public int lifeMax = 100;
-    public int life;
+    public int life=100;
 
     public GameObject child;
 
@@ -29,6 +29,11 @@ public class EnemyTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (life <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         if (atacou == true)
         {
             count += Time.deltaTime;
@@ -82,10 +87,10 @@ public class EnemyTower : MonoBehaviour
                 {
                     morri = true;
                     
-                    paiTorres.checagemtorre(morri);
+                    //paiTorres.checagemtorre(morri);
                     //collision.enabled = false;
 
-                    Destroy(this.gameObject, 1);
+                    Destroy(this.gameObject);
                 }
             }
 

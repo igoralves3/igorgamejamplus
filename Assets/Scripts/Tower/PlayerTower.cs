@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerTower : MonoBehaviour
 {
 
@@ -10,7 +10,7 @@ public class PlayerTower : MonoBehaviour
     public EnemyTroop enemyTroop;
     float count;
     public int lifeMax = 100;
-    public int life;
+    public int life=100;
 
     public GameObject child;
 
@@ -51,7 +51,7 @@ public class PlayerTower : MonoBehaviour
                 {
                     Debug.Log("vida");
                     //child.GetComponent<BoxCollider2D>().enabled = false;
-                    //enabled = false;
+                    enabled = false;
                     enemyTroop.atacarAnim = true;
                     box.enabled = false;
                 }
@@ -74,12 +74,16 @@ public class PlayerTower : MonoBehaviour
                 life -= 100;
                 atacou = true;
 
+                
+                collision.gameObject.GetComponent<EnemyTroop>().animator.SetBool("AtaqueEnemy", atacou);
+                collision.gameObject.transform.LookAt(gameObject.transform.position);
+
                 if (life <= 0)
                 {
                    // morri = true;
                     //paiTorres.checagemtorre(morri);
                     //collision.enabled = false;
-
+                    //enabled = false;
                     Destroy(this.gameObject);
                 }
             }

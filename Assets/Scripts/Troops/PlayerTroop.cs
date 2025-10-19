@@ -1,8 +1,10 @@
-using Unity.Mathematics;
+
+
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PlayerTroop : MonoBehaviour
 {
@@ -49,7 +51,15 @@ public class PlayerTroop : MonoBehaviour
         {
             var towerss = GameObject.FindGameObjectsWithTag("EnemyTower");
             var currentDelta = Mathf.Infinity;
-            var tower = towerss[0];
+            if (towerss.Length == 0)
+            {
+                SceneManager.LoadScene("Victory");
+            }
+
+            var tower = towerss[Random.Range(0,towerss.Length)];//towerss[0];
+
+
+            /*
             foreach (var t in towerss)
             {
                 var delta = Vector3.Distance(transform.position, t.transform.position);
@@ -59,7 +69,7 @@ public class PlayerTroop : MonoBehaviour
                     currentDelta = delta;
 
                 }
-            }
+            }*/
             agent.SetDestination(tower.transform.position);
             torre = tower.transform;
         }
@@ -160,7 +170,11 @@ public class PlayerTroop : MonoBehaviour
             var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
             var currentDelta = 0f;
             var tower = towers[0];
-            if (towers.Length > 1)
+        if (towers.Length == 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+        if (towers.Length > 1)
             {
                 if (towers[0].transform.position.y > towers[1].transform.position.y)
                 {

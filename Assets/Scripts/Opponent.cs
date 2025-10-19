@@ -35,7 +35,7 @@ public class Opponent : MonoBehaviour
         }
 
         framesSpawn += 1;
-        if (framesSpawn >= 600)
+        if (framesSpawn >= 1200)
         {
             framesSpawn = 0;
             var r = Random.Range(0, 100);
@@ -50,7 +50,8 @@ public class Opponent : MonoBehaviour
             {
                 if (coins >= 1) {
                     coins -= 1;
-                    OnDefense();
+                    OnOffense();
+                    //OnDefense();
                 }
             }
         }
