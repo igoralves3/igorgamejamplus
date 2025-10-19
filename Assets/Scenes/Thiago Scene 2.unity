@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 193600694}
   m_Layer: 0
   m_Name: StopsAgents
-  m_TagString: Untagged
+  m_TagString: EnemyTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1388,7 +1388,6 @@ GameObject:
   - component: {fileID: 571692778}
   - component: {fileID: 571692779}
   - component: {fileID: 571692780}
-  - component: {fileID: 571692781}
   m_Layer: 0
   m_Name: EnemyTower2
   m_TagString: EnemyTower
@@ -1550,33 +1549,6 @@ MonoBehaviour:
   lifeMax: 100
   life: 100
   child: {fileID: 0}
---- !u!50 &571692781
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 571692775}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &602620934
 GameObject:
   m_ObjectHideFlags: 0

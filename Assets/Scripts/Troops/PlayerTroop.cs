@@ -55,29 +55,32 @@ public class PlayerTroop : MonoBehaviour
             {
                 SceneManager.LoadScene("Victory");
             }
+            //else {
 
-            var tower = towerss[Random.Range(0,towerss.Length)];//towerss[0];
+                var tower = towerss[Random.Range(0, towerss.Length)];//towerss[0];
 
 
-            /*
-            foreach (var t in towerss)
-            {
-                var delta = Vector3.Distance(transform.position, t.transform.position);
-                if (delta < currentDelta)
+                /*
+                foreach (var t in towerss)
                 {
-                    tower = t;
-                    currentDelta = delta;
+                    var delta = Vector3.Distance(transform.position, t.transform.position);
+                    if (delta < currentDelta)
+                    {
+                        tower = t;
+                        currentDelta = delta;
 
-                }
-            }*/
-            agent.SetDestination(tower.transform.position);
-            torre = tower.transform;
+                    }
+                }*/
+                agent.SetDestination(tower.transform.position);
+                torre = tower.transform;
+            currentTower=tower;
+           // }
+
         }
         else
-        {
-            GetTowerDestinationDefensive();
-        }
-
+            {
+             GetTowerDestinationDefensive();
+            }
     }
 
     // Update is called once per frame
@@ -91,15 +94,20 @@ public class PlayerTroop : MonoBehaviour
         if (currentTower == null)
         {
            
-            //   ChangeTower();
+           // ChangeTower();
         }
 
         if (goingToCenter)
         {
-            if (new Vector2(transform.position.x, transform.position.y) == new Vector2(0f, 0f))
+            if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(0f, 0f)) <= 1f)
             {
                 goingToCenter = false;
-                ChangeTower();
+                //ChangeTower();
+                if (!offensive)
+                {
+                    ChangeTower();
+                    //GetTowerDestinationDefensive();
+                }
             }
         }
     }
@@ -123,32 +131,37 @@ public class PlayerTroop : MonoBehaviour
             }
             else
             {
-                Vector3 direcao = torre.position - espada.transform.position;
+                //Vector3 direcao = torre.position - espada.transform.position;
 
-                float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
+ //               float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
 
-                Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, angulo + rotacaoOffset);
-                espada.transform.rotation = rotacaoFinal;
-                espada.transform.position = transform.position + new Vector3(-1, 0f, 0f);
+   //             Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, angulo + rotacaoOffset);
+     //           espada.transform.rotation = rotacaoFinal;
+                espada.transform.position = transform.position + new Vector3(1, 0f, 0f);
 
             }
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             animator.SetBool("Atacar", true);
 
+            
         }
         if (collision.gameObject.CompareTag("PlayerTower"))
         {
             if (!offensive)
             {
-                if (hp < 100)
+                var c = collision.gameObject.GetComponent<PlayerTower>();
+                if (c.life+10 < 100)
                 {
-                    hp++;
+                    c.life += 10;
                 }
                 else
                 {
+                    c.life = 100;
                     //ChangeTower();
-                    GoToCenter();
+                    //GoToCenter();
+                    //GetTowerDestinationDefensive();
                 }
+                Destroy(gameObject);
             }
 
         }
@@ -233,8 +246,8 @@ public class PlayerTroop : MonoBehaviour
             if (collision.gameObject.tag == "EnemyTroop")
             {
 
-                //var c = collision.gameObject.GetComponent<EnemyTroop>();
-                //c.hp -= Random.Range(0,attack); 
+                var c = collision.gameObject.GetComponent<EnemyTroop>();
+                c.hp -= Random.Range(0,attack); 
 
             }
         }

@@ -86,11 +86,12 @@ public class EnemyTower : MonoBehaviour
                 if (life <= 0)
                 {
                     morri = true;
-                    
+
                     //paiTorres.checagemtorre(morri);
                     //collision.enabled = false;
-
+                    Destroy(collision.gameObject);
                     Destroy(this.gameObject);
+
                 }
             }
 

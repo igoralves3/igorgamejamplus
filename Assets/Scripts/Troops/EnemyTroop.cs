@@ -33,6 +33,10 @@ public class EnemyTroop : MonoBehaviour
 
     public int attack=10;
 
+    private float ataqueCoolDown=3;
+    private bool atacou = false;
+    float count;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -113,6 +117,15 @@ public class EnemyTroop : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (atacou == true)
+        {
+            count += Time.deltaTime;
+            if (count >= ataqueCoolDown)
+            {
+                atacou = false;
+                count = 0;
+            }
+        }
 
         // var e = currentTower.GetComponent<EnemyTower>();
         //var p = currentTower.GetComponent<PlayerTower>();
@@ -151,31 +164,32 @@ public class EnemyTroop : MonoBehaviour
        
         if (collision.gameObject.CompareTag("PlayerTower"))
         {
-            Debug.Log("Player Tower trigger");
-            if (transform.position.y > collision.gameObject.transform.position.y)
-            {
-                //transform.LookAt(collision.gameObject.transform);
-                espada.transform.position = transform.position - new Vector3(0f, 1f, 0f);
-            }
-            else
-            {
-                espada.transform.position = transform.position + new Vector3(0f, -1f, 0f);
-            }
-            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
-            animator.SetBool("AtaqueEnemy",atacarAnim);
-            //animator.SetBool("Atacar", true);
-            var c = collision.gameObject.GetComponent<PlayerTower>();
-            if (c != null)
-            {
-                c.life -= 1;
+            
+                Debug.Log("Player Tower trigger");
+                if (transform.position.y > collision.gameObject.transform.position.y)
+                {
+                    //transform.LookAt(collision.gameObject.transform);
+                    espada.transform.position = transform.position - new Vector3(0f, 1f, 0f);
+                }
+                else
+                {
+                    espada.transform.position = transform.position + new Vector3(0f, -1f, 0f);
+                }
+                gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+                animator.SetBool("AtaqueEnemy", atacarAnim);
+                //animator.SetBool("Atacar", true);
+                var c = collision.gameObject.GetComponent<PlayerTower>();
+                if (c != null)
+                {
+                    c.life -= attack;
 
 
-                //currentTower = null;
-                
-                //goingToCenter = true;
-                //GoToCenter();
-            }
+                    //currentTower = null;
 
+                    //goingToCenter = true;
+                    //GoToCenter();
+                }
+            
         }
         if (collision.gameObject.CompareTag("EnemyTower"))
         {
@@ -202,31 +216,34 @@ public class EnemyTroop : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerTower"))
         {
-            Debug.Log("Player Tower trigger");
-            if (transform.position.y > collision.gameObject.transform.position.y)
-            {
-                //transform.LookAt(collision.gameObject.transform);
-                espada.transform.position = transform.position - new Vector3(0f, 1f, 0f);
+            if (!atacou) {
+                Debug.Log("Player Tower trigger stay");
+                atacou = true;
+                if (transform.position.y > collision.gameObject.transform.position.y)
+                {
+                    //transform.LookAt(collision.gameObject.transform);
+                    espada.transform.position = transform.position - new Vector3(0f, 1f, 0f);
+                }
+                else
+                {
+                    espada.transform.position = transform.position + new Vector3(0f, 1f, 0f);
+                }
+                gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+                animator.SetBool("AtaqueEnemy", true);
+                //animator.SetBool("Atacar", true);
+                var c = collision.gameObject.GetComponent<PlayerTower>();
+                if (c != null)
+                {
+                    //animator.SetBool("AtaqueEnemy", atacarAnim);
+                    c.life -= attack;
+
+
+                    //currentTower = null;
+
+                    //goingToCenter = true;
+                    //GoToCenter();
+                }
             }
-            else
-            {
-                espada.transform.position = transform.position + new Vector3(0f, -1f, 0f);
-            }
-            gameObject.GetComponent<NavMeshAgent>().isStopped = true;
-            animator.SetBool("AtaqueEnemy", atacarAnim);
-            //animator.SetBool("Atacar", true);
-            var c = collision.gameObject.GetComponent<PlayerTower>();
-            if (c != null)
-            {
-                c.life -= 10;
-
-
-                //currentTower = null;
-
-                //goingToCenter = true;
-                //GoToCenter();
-            }
-
         }
         
     }
@@ -272,7 +289,7 @@ public class EnemyTroop : MonoBehaviour
 
         }
         if (collision.gameObject.CompareTag("EnemyTower"))
-        {
+        {/*
             if (!offensive)
             {
                 if (hp < 100)
@@ -286,7 +303,23 @@ public class EnemyTroop : MonoBehaviour
                     GoToCenter();
                 }
             }
-
+*/
+            if (!offensive)
+            {
+                var c = collision.gameObject.GetComponent<EnemyTower>();
+                if (c.life+10 < 100)
+                {
+                    c.life += 10;
+                }
+                else
+                {
+                    c.life = 100;
+                    //ChangeTower();
+                    //GoToCenter();
+                    //GetTowerDestinationDefensive();
+                }
+                Destroy(gameObject);
+            }
         }
         if (collision.gameObject.tag == "PlayerTroop")
         {

@@ -50,8 +50,8 @@ public class Opponent : MonoBehaviour
             {
                 if (coins >= 1) {
                     coins -= 1;
-                    OnOffense();
-                    //OnDefense();
+                    //OnOffense();
+                    OnDefense();
                 }
             }
         }

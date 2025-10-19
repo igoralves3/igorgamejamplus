@@ -43,7 +43,7 @@ public class PlayerTower : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("BoxInimigo") || collision.gameObject.CompareTag("EnemyTroop"))
+        if (collision.gameObject.CompareTag("BoxInimigo") /*|| collision.gameObject.CompareTag("EnemyTroop")*/)
         {
             if (!atacou)
             {
@@ -58,7 +58,7 @@ public class PlayerTower : MonoBehaviour
                     //child.GetComponent<BoxCollider2D>().enabled = false;
                     //enabled = false;
                     enemyTroop.atacarAnim = true;
-                    box.enabled = false;
+                   // box.enabled = false;
                 }
             }
 
@@ -76,7 +76,7 @@ public class PlayerTower : MonoBehaviour
             {
 
 
-                life -= 100;
+                //life -= 100;
                 atacou = true;
 
                 
@@ -106,7 +106,7 @@ public class PlayerTower : MonoBehaviour
             {
 
 
-            life -= 1;
+           // life -= 1;
             atacou = true;
 
             if (life <= 0)
@@ -115,7 +115,7 @@ public class PlayerTower : MonoBehaviour
                 //paiTorres.checagemtorre(morri);
                 //collision.enabled = false;
 
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
             }
             }
 
