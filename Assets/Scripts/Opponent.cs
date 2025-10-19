@@ -1,5 +1,7 @@
 
+
 using System.Collections.Specialized;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Opponent : MonoBehaviour
@@ -33,16 +35,23 @@ public class Opponent : MonoBehaviour
         }
 
         framesSpawn += 1;
-        if (framesSpawn >= 60)
+        if (framesSpawn >= 600)
         {
             framesSpawn = 0;
-            if (Random.Range(0,100) > 50)
+            var r = Random.Range(0, 100);
+            if (r <= 30)
             {
-                OnOffense();
+                if (coins >= 2) {
+                    coins -= 2;
+                    OnOffense();
+                }
             }
-            else
+            else if (r > 30 && r <= 60)
             {
-                OnDefense();
+                if (coins >= 1) {
+                    coins -= 1;
+                    OnDefense();
+                }
             }
         }
     }

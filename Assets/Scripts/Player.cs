@@ -83,10 +83,13 @@ public class Player : MonoBehaviour
         RaycastHit2D cubeHit = Physics2D.Raycast(worldPosition, Vector2.zero);
         if (cubeHit)
         {
-            Debug.Log("We hit " + cubeHit.collider.name);
-            if (cubeHit.collider.gameObject.tag == "SpawnArea") {
-                var pt = Instantiate(playerTroop,cubeHit.transform.position, Quaternion.identity);
-                pt.GetComponent<PlayerTroop>().offensive = true;
+            if (coins >= 2) {
+                coins -= 2;
+                Debug.Log("We hit " + cubeHit.collider.name);
+                if (cubeHit.collider.gameObject.tag == "SpawnArea") {
+                    var pt = Instantiate(playerTroop, cubeHit.transform.position, Quaternion.identity);
+                    pt.GetComponent<PlayerTroop>().offensive = true;
+                }
             }
         }
 
@@ -104,11 +107,15 @@ public class Player : MonoBehaviour
         RaycastHit2D cubeHit = Physics2D.Raycast(worldPosition, Vector2.zero);
         if (cubeHit)
         {
-            Debug.Log("We hit " + cubeHit.collider.name);
-            if (cubeHit.collider.gameObject.tag == "SpawnArea")
+            if (coins >= 1)
             {
-                var pt = Instantiate(playerTroop, cubeHit.transform.position, Quaternion.identity);
-                pt.GetComponent<PlayerTroop>().offensive = false;
+                coins -= 1;
+                Debug.Log("We hit " + cubeHit.collider.name);
+                if (cubeHit.collider.gameObject.tag == "SpawnArea")
+                {
+                    var pt = Instantiate(playerTroop, cubeHit.transform.position, Quaternion.identity);
+                    pt.GetComponent<PlayerTroop>().offensive = false;
+                }
             }
         }
     }
