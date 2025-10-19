@@ -95,20 +95,20 @@ public class PlayerTroop : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       
+
 
         if (collision.gameObject.CompareTag("EnemyTower"))
         {
             if (transform.position.x > collision.gameObject.transform.position.x)
             {
-                Vector3 direcao = torre.position-espada.transform.position;
+                Vector3 direcao = torre.position - espada.transform.position;
 
-                float angulo= Mathf.Atan2(direcao.y, direcao.x)*Mathf.Rad2Deg;
+                float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
 
                 Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, -angulo + rotacaoOffset);
                 espada.transform.rotation = rotacaoFinal;
 
-                 espada.transform.position = transform.position - new Vector3(1, 0f, 0f);
+                espada.transform.position = transform.position - new Vector3(1, 0f, 0f);
 
             }
             else
@@ -142,107 +142,111 @@ public class PlayerTroop : MonoBehaviour
             }
 
         }
-        if(collision.gameObject.CompareTag("BoxInimigo")
+        if (collision.gameObject.CompareTag("BoxInimigo"))
 
-         {
+        {
             hp -= 10;
 
-            if (hp <= 0) {
+            if (hp <= 0)
+            {
                 Destroy(this.gameObject);
 
+            }
         }
     }
 
-    void GetTowerDestinationDefensive()
-    {
-        var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
-        var currentDelta = 0f;
-        var tower = towers[0];
-        if (towers.Length > 1)
+        public void GetTowerDestinationDefensive()
         {
-            if (towers[0].transform.position.y > towers[1].transform.position.y)
+            var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
+            var currentDelta = 0f;
+            var tower = towers[0];
+            if (towers.Length > 1)
             {
-                var aux = towers[0];
-                towers[0] = towers[1];
-                towers[1] = aux;
+                if (towers[0].transform.position.y > towers[1].transform.position.y)
+                {
+                    var aux = towers[0];
+                    towers[0] = towers[1];
+                    towers[1] = aux;
+                }
+
+                if (transform.position.y > 0)
+                {
+                    tower = towers[0];
+                }
+                else
+                {
+                    tower = towers[1];
+                }
             }
 
-            if (transform.position.y > 0)
-            {
-                tower = towers[0];
-            }
-            else
-            {
-                tower = towers[1];
-            }
-        }
-
-        Debug.Log("tower " + tower.ToString());
-        /*
-         foreach (var t in towers)
-         {
-             var delta = Vector3.Distance(transform.position, t.transform.position);
-             if (delta > currentDelta)
+            Debug.Log("tower " + tower.ToString());
+            /*
+             foreach (var t in towers)
              {
-                 tower = t;
-                 currentDelta = delta;
-             }
-         }*/
-        agent.SetDestination(tower.transform.position);
+                 var delta = Vector3.Distance(transform.position, t.transform.position);
+                 if (delta > currentDelta)
+                 {
+                     tower = t;
+                     currentDelta = delta;
+                 }
+             }*/
+            agent.SetDestination(tower.transform.position);
 
-        currentTower = tower;
-    }
+            currentTower = tower;
+        }
 
-    void ChangeTower()
-    {
-        var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
-        foreach (var t in towers)
+        void ChangeTower()
         {
-            if (t != currentTower)
+            var towers = GameObject.FindGameObjectsWithTag("PlayerTower");
+            foreach (var t in towers)
             {
-                currentTower = t;
-                break;
+                if (t != currentTower)
+                {
+                    currentTower = t;
+                    break;
+                }
+            }
+            agent.SetDestination(currentTower.transform.position);
+        }
+
+        void GoToCenter()
+        {
+            agent.SetDestination(new Vector3(0f, 0f, 0f));
+        }
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.tag == "EnemyTroop")
+            {
+
+                //var c = collision.gameObject.GetComponent<EnemyTroop>();
+                //c.hp -= Random.Range(0,attack); 
+
             }
         }
-        agent.SetDestination(currentTower.transform.position);
-    }
-
-    void GoToCenter()
-    {
-        agent.SetDestination(new Vector3(0f, 0f, 0f));
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "EnemyTroop")
+        public void lidarComTrigger(VisionTroopScript.TipoDeTrigger tipoDeTrigger, Collider2D playerCollider, GameObject target)
         {
+            switch (tipoDeTrigger)
+            {
 
-            //var c = collision.gameObject.GetComponent<EnemyTroop>();
-            //c.hp -= Random.Range(0,attack); 
+                case VisionTroopScript.TipoDeTrigger.Visao:
+                    animator.SetBool("Atacar", true);
+                    agent.Stop();
+                    Vector3 direcao = target.transform.position - espada.transform.position;
 
+                    float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
+
+                    Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, -angulo + rotacaoOffset);
+                    espada.transform.rotation = rotacaoFinal;
+
+                    break;
+            }
         }
-    }
-    public void lidarComTrigger(VisionTroopScript.TipoDeTrigger tipoDeTrigger, Collider2D playerCollider, GameObject target)
-    {
-        switch (tipoDeTrigger)
-        {
-
-            case VisionTroopScript.TipoDeTrigger.Visao:
-                animator.SetBool("Atacar", true);
-                agent.Stop();
-                Vector3 direcao = target.transform.position - espada.transform.position;
-
-                float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
-
-                Quaternion rotacaoFinal = Quaternion.Euler(0f, 0f, -angulo + rotacaoOffset);
-                espada.transform.rotation = rotacaoFinal;
-
-                break;
-        }
-    }
-    public   void EnemyisDead(bool dead)
-    {
         
-    }
     
+
+    public void EnemyisDead(bool dead)
+    {
+
+    }
 }
