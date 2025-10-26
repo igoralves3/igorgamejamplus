@@ -156,8 +156,10 @@ public class EnemyTroop : MonoBehaviour
                     goingToCenter = false;
                     ChangeTower();
                 }
+            
             }
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -179,8 +181,9 @@ public class EnemyTroop : MonoBehaviour
                 }
                 gameObject.GetComponent<NavMeshAgent>().isStopped = true;
                 animator.SetBool("AtaqueEnemy", atacarAnim);
-                //animator.SetBool("Atacar", true);
-                var c = collision.gameObject.GetComponent<PlayerTower>();
+            //animator.SetBool("Atacar", true);
+            SoundFXManager.instance.PlaySoundFXClip(clip, transform, 1.0F);
+            var c = collision.gameObject.GetComponent<PlayerTower>();
                 if (c != null)
                 {
                     c.life -= attack;
@@ -233,6 +236,7 @@ public class EnemyTroop : MonoBehaviour
                 gameObject.GetComponent<NavMeshAgent>().isStopped = true;
                 animator.SetBool("AtaqueEnemy", true);
                 //animator.SetBool("Atacar", true);
+                SoundFXManager.instance.PlaySoundFXClip(clip, transform, 1.0F);
                 var c = collision.gameObject.GetComponent<PlayerTower>();
                 if (c != null)
                 {
@@ -477,6 +481,7 @@ public class EnemyTroop : MonoBehaviour
             {
             case scriptVisaoEnemy.TipoDeTrigger.Visao:
                 animator.SetBool("AtaqueEnemy", true);
+                SoundFXManager.instance.PlaySoundFXClip(clip, transform, 1.0F);
                 agent.Stop();
 
                 Vector3 direcao = target.transform.position - espada.transform.position;
