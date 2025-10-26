@@ -113,6 +113,7 @@ public class PlayerTroop : MonoBehaviour
                 }
             }
         }
+       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -145,7 +146,8 @@ public class PlayerTroop : MonoBehaviour
             }
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             animator.SetBool("Atacar", true);
-            AudioSource.PlayClipAtPoint(clip, transform.position);
+            //AudioSource.PlayClipAtPoint(clip, transform.position);
+            SoundFXManager.instance.PlaySoundFXClip(clip, transform, 1.0F);
 
 
         }
@@ -262,6 +264,7 @@ public class PlayerTroop : MonoBehaviour
 
                 case VisionTroopScript.TipoDeTrigger.Visao:
                     animator.SetBool("Atacar", true);
+                    SoundFXManager.instance.PlaySoundFXClip(clip, transform, 1.0F);
                     agent.Stop();
                     Vector3 direcao = target.transform.position - espada.transform.position;
 
